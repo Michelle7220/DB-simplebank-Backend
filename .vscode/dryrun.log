@@ -1,0 +1,4 @@
+make: Entering directory `/Users/shenghuang/Desktop/simplebank'
+docker run --name postgres12 --network bank-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
+make: Leaving directory `/Users/shenghuang/Desktop/simplebank'
+ 
