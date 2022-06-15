@@ -4,11 +4,7 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-<<<<<<< HEAD
     email: techschool.guru@gmail.com
-=======
-    email: michellehuang722@gmail.com
->>>>>>> 4865859e2d60c52427a4ca9377f7300a40ea8962
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       # Secret resource that will be used to store the account's private key.
