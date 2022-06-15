@@ -14,21 +14,13 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-<<<<<<< HEAD
 
     - name: Install kubectl
       uses: azure/setup-kubectl@v1
       with:
-        version: 'v1.24.0'
+        version: 'v1.21.3'
       id: install
 
-=======
-    - name: Install kubectl
-      uses: azure/setup-kubectl@v2.0
-      with:
-        version: '1.24.1'
-      id: install
->>>>>>> 4865859e2d60c52427a4ca9377f7300a40ea8962
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -49,22 +41,19 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: simplebank
         IMAGE_TAG: ${{ github.sha }}
-      run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t latest .
-        docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
-<<<<<<< HEAD
 
-     - name: Deploy image to Amazon EKS
-=======
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+        docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
+
+
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name simple-bank --region eu-west-1
+
     - name: Deploy image to Amazon EKS
->>>>>>> 4865859e2d60c52427a4ca9377f7300a40ea8962
       run: |
         kubectl apply -f eks/aws-auth.yaml
         kubectl apply -f eks/deployment.yaml
         kubectl apply -f eks/service.yaml
         kubectl apply -f eks/issuer.yaml
         kubectl apply -f eks/ingress.yaml
-<<<<<<< HEAD
-=======
-
->>>>>>> 4865859e2d60c52427a4ca9377f7300a40ea8962
