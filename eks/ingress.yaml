@@ -12,7 +12,10 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
+<<<<<<< HEAD
   ingressClassName: nginx
+=======
+>>>>>>> 4865859e2d60c52427a4ca9377f7300a40ea8962
   rules:
   - host: "api.simplebanktoday.com"
     http:
